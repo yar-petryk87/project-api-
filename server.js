@@ -1,7 +1,14 @@
-var express = require('express')
-var app = express()
-var port = process.env.PORT || 8000
+var express = require('express');
+var app = express();
+var port = process.env.PORT || 8000 ;
+var bodyParser = require('body-parser') ;
+var path = require('path');
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.set('views', __dirname + '/views');
 app.set('view engine' , 'pug')
+
 
 
 var user = [
@@ -83,6 +90,20 @@ app.get('/:id' , function (req, res) {
  
 });
 
+app.post('/add' , function(req , res) {
+	/*var newuser = {
+		"id": user[user.length-1].id + 1 ,
+		"data": req.body.newraw
+	};
+
+	user.push(newuser);*/
+
+	res.render(
+		'index' , {
+			w: "jr"
+		});
+	
+})
 
 
 
