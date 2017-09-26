@@ -5,16 +5,7 @@ h1= heading
 h3= remark
 each str in strings
 	p= str.data
-form(
-method='post'
-action='/add'
-)
-input(
-type='text'
-name='newraw'
-)
-input(
-type='submit'
-value='ADD'
-)
+form(method='post' action='/add')
+	input(type='text' name='newraw')
+	input(type='submit' value='ADD')
 h2= w

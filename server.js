@@ -91,18 +91,16 @@ app.get('/:id' , function (req, res) {
 });
 
 app.post('/add' , function(req , res) {
-	/*var newuser = {
+	var newuser = {
 		"id": user[user.length-1].id + 1 ,
 		"data": req.body.newraw
 	};
 
-	user.push(newuser);*/
+	user.push(newuser);
 
 	res.render(
-		'index' , {
-			w: "jr"
-		});
-	
+		'index' , user
+		);
 })
 
 
