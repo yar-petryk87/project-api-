@@ -9,16 +9,6 @@ each str in strings
 	form(method='post' style="display:inline-block;" action='/delete')
 		input(type='hidden' name='row_id' value=''+str.id)
 		input(style="margin-left:30px" type='submit' value='Delete')
-	a(style="margin-left:100px" href='/get?id=' + str.id) Info
-	br
 
-if buf
-	form(method='post' action='/update?id=' + buf.id)
-		p= buf.data
-		input(type='text' name='buffer' value=buf.data)
-		input(type='submit' value='update')
-else
-	form(method='post' action='/add?' + params)
-		input(type='text' name='newraw')
-		input(type='submit' value='ADD')
+
 

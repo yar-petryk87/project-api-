@@ -32,7 +32,7 @@ server.on('listening', onListening);
 /**
  * Normalize a port into a number, string, or false.
  */
-
+var app = require('../server')
 function normalizePort(val) {
   var port = parseInt(val, 10);
 

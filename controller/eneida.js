@@ -46,7 +46,7 @@ app.post('/add' , function(req , res) {
 	let id = req.query.id;
 	let data = fetchUser(id) ;
 	var newrow = {
-		"id": Number(eneida[eneida.length-1].id) + 1 ,
+		"id": eneida[eneida.length-1].id + 1 ,
 		"data": req.body.newraw
 	};
 
