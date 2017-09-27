@@ -66,44 +66,89 @@ var user = [
 
 
 ]
+
+function fetchUser (id) {
+	let data = user.filter(function(element) {
+
+		return element.id == id ;
+	});
+	return data ;
+}
+
 app.get('/' , function (req, res) {
 	
   res.render(
   		'index' , 
   		{ heading: `ЕНЕЇДА` ,
-  		  strings: user })
+  		  strings: user,
+  		  params: '' })
  
 })
 
-app.get('/:id' , function (req, res) {
-	
-	var data = user.filter(function(element) {
-
-		return element.id == req.params.id ;
-	});
-
+app.get('/get' , function (req, res) {
+	let id = req.query.id;
   res.render(
   		'index' , 
   		{ heading: `ЕНЕЇДА ` ,
-  		  remark: `рядок ${req.params.id}` ,
-  		  strings: data })
+  		  remark: 'рядок ' + id ,
+  		  strings: fetchUser(id),
+  		  params: 'id=' + id })
  
 });
 
 app.post('/add' , function(req , res) {
+	let id = req.query.id;
+	let data = fetchUser(id) ;
 	var newuser = {
 		"id": user[user.length-1].id + 1 ,
 		"data": req.body.newraw
 	};
 
 	user.push(newuser);
+	data.push(newuser);
+	
 
 	res.render(
-		'index' , user
-		);
+		'index' , {
+			heading: `ЕНЕЇДА ` ,
+  		  	remark: `додано успішно ` ,
+  		  	strings: data,
+  		  	params: 'id=' + id
+		});
 })
 
 
+app.get('/edit' , function (req, res) {
+	let id = req.query.id;
+	let data = fetchUser(id) ;
+
+  res.render(
+  		'index' , 
+  		{ heading: `ЕНЕЇДА` ,
+  			strings: [],
+  		  buf: data[0],
+  		  params: 'id=' + id })
+ 
+})
+
+app.post('/update' , function(req , res) {
+	let id = req.query.id;
+	user.forEach((usr) => {
+		if (usr.id == id) {
+			usr.data = req.body.buffer;
+		}
+	});
+	
+
+	
+
+	res.render(
+		'index' , {
+			heading: `ЕНЕЇДА ` ,
+  		  	remark: `success` ,
+  		  	strings: []
+		});
+})
 
 app.listen(port , function() {
 	console.log("Everything is OK")

@@ -4,7 +4,17 @@ html
 h1= heading
 h3= remark
 each str in strings
-	p= str.data
-form(method='post' action='/add')
-	input(type='text' name='newraw')
-	input(type='submit' value='ADD')
+	p= str.data 
+	a(href='/edit?id=' + str.id) Edit
+	input(type='button' value='DELETE')
+
+if buf
+	form(method='post' action='/update?id=' + buf.id)
+		p= buf.data
+		input(type='text' name='buffer' value=buf.data)
+		input(type='submit' value='update')
+else
+	form(method='post' action='/add?' + params)
+		input(type='text' name='newraw')
+		input(type='submit' value='ADD')
+
